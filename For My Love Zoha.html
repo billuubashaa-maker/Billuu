@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://via.placeholder.com/1920x1080/ffcccc/ffffff?text=Romantic+Hearts') no-repeat center center fixed, linear-gradient(135deg, #ffe6e6, #ffb3ba);
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            transition: background 1s ease;
+        }
+        body.celebration-bg {
+            background: url('https://via.placeholder.com/1920x1080/ff9999/ffffff?text=Beautiful+Roses') no-repeat center center fixed, linear-gradient(135deg, #ffcccc, #ff9999);
+            background-size: cover;
+        }
+        body.love-letter-bg {
+            background: url('https://via.placeholder.com/1920x1080/e6ccff/ffffff?text=Starry+Night') no-repeat center center fixed, linear-gradient(135deg, #e6ccff, #ffb3ba);
+            background-size: cover;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 500px;
+        }
+        h1 {
+            color: #e91e63;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        #yes {
+            background-color: #4caf50;
+            color: white;
+        }
+        #yes:hover {
+            background-color: #45a049;
+        }
+        #no {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+        }
+        #no:hover {
+            background-color: #d32f2f;
+        }
+        .message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            z-index: 1000;
+        }
+        .celebration {
+            display: none;
+            text-align: center;
+            color: #e91e63;
+            animation: fadeIn 1s ease;
+        }
+        .celebration h1 {
+            font-size: 3em;
+        }
+        .love-letter {
+            display: none;
+            text-align: center;
+            color: #e91e63;
+            animation: fadeIn 1s ease;
+            padding: 20px;
+        }
+        .letter-section {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid #e91e63;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            line-height: 1.6;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .gallery img {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .heart {
+            position: absolute;
+            color: #e91e63;
+            font-size: 2em;
+            animation: float 3s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff5722;
+            border-radius: 50%;
+            animation: explode 2s infinite;
+        }
+        .firework:nth-child(odd) { background-color: #2196f3; }
+        .firework:nth-child(even) { background-color: #ff9800; }
+        @keyframes explode {
+            0% { transform: scale(0); opacity: 1; }
+            50% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            .gallery img {
+                width: 100px;
+                height: 100px;
+            }
+            .letter-section {
+                max-height: 300px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body id="body">
+    <div class="container" id="question">
+        <h1>Will you be my Valentine, ZOHA?</h1>
+        <p>From Bilal! I love you more than words can say! 💖</p>
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+    <div class="message" id="message"></div>        
+    <div class="celebration" id="celebration">
+        <h1>Yay! I love you, Zoha 🎉</h1>
+        <p>Happy Valentine's Day! 💕</p>
+        <button id="nextPage">Read My Love Letter</button>
+    </div>
+    <div class="love-letter" id="loveLetter">
+        <h1>My Love Letter to ZOHA</h1>
+        <div class="letter-section">
+            <p>Dear ZOHA,</p>
+            <p>Janah i'm always yours. You're the reason of the smile. My love is always same for you. You're my happiness my peace my life and specially my wife💕. You're the love of my life💕. I'm always be the same as now. I will never let you go away from me because i ca'nt live without you janah. I'm not perfect i know but I'm working work to be perfect for you💖. I'm possesive i know but i love you more than each person on the earth. You're mine and only mine.</p>
+        </div>
+        <p>Forever yours, BILAL 💕</p>
+        <button id="backToCelebration">Back</button>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('no');
+        const yesButton = document.getElementById('yes');
+        const question = document.getElementById('question');
+        const celebration = document.getElementById('celebration');
+        const loveLetter = document.getElementById('loveLetter');
+        const message = document.getElementById('message');
+        const nextPage = document.getElementById('nextPage');
+        const backToCelebration = document.getElementById('backToCelebration');
+        const body = document.getElementById('body');
+
+        let noClickCount = 0;
+        const messages = [
+            "ohhh really?",
+            "seriously",
+            "motiii tang nhi kar",
+            "oye yes press kar.."
+        ];
+
+        // Function to show message
+        function showMessage(text) {
+            message.textContent = text;
+            message.style.display = 'block';
+            setTimeout(() => message.style.display = 'none', 2000);
+        }
+
+        // Function to move the No button randomly
+        function moveNoButton() {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+            noButton.style.position = 'absolute';
+        }
+
+        // Function to multiply No buttons
+        function multiplyNoButtons() {
+            for (let i = 0; i < 5; i++) {
+                const newNo = noButton.cloneNode(true);
+                newNo.id = '';
+                newNo.addEventListener('click', () => moveNoButton());
+                newNo.addEventListener('mouseover', () => moveNoButton());
+                document.body.appendChild(newNo);
+                moveNoButton();
+            }
+        }
+
+        // Handle No button click
+        noButton.addEventListener('click', () => {
+            if (noClickCount < messages.length) {
+                showMessage(messages[noClickCount]);
+                noClickCount++;
+            } else {
+                multiplyNoButtons();
+                moveNoButton();
+            }
+        });
+
+        // Move No button on hover
+        noButton.addEventListener('mouseover', moveNoButton);
+
+        // Handle Yes button click
+        yesButton.addEventListener('click', () => {
+            question.style.display = 'none';
+            celebration.style.display = 'block';
+            body.className = 'celebration-bg'; // Change to celebration background
+            // Create floating hearts
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = '💖';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }
+            // Create fireworks
+            for (let i = 0; i < 50; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = Math.random() * 100 + '%';
+                firework.style.top = Math.random() * 100 + '%';
+                firework.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(firework);
+                setTimeout(() => firework.remove(), 2000);
+            }
+        });
+
+        // Navigate to love letter
+        nextPage.addEventListener('click', () => {
+            celebration.style.display = 'none';
+            loveLetter.style.display = 'block';
+            body.className = 'love-letter-bg'; // Change to love letter background
+        });
+
+        // Back to celebration
+        backToCelebration.addEventListener('click', () => {
+            loveLetter.style.display = 'none';
+            celebration.style.display = 'block';
+            body.className = 'celebration-bg'; // Back to celebration background
+        });
+    </script>
+</body>
+</html>
